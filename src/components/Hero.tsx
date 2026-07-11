@@ -66,7 +66,7 @@ export default function Hero({ onExploreClick, onRequestDemo }: HeroProps) {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-[center_72%] sm:object-[center_60%] md:object-center"
         />
       </motion.div>
 
@@ -93,11 +93,11 @@ export default function Hero({ onExploreClick, onRequestDemo }: HeroProps) {
       </div>
 
       {/* Cinematic Overlays */}
-      {/* 1. Deep Vignette to focus attention on central text, optimized */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(5,11,19,0.01)_0%,rgba(5,11,19,0.5)_100%)] z-10 select-none pointer-events-none" />
+      {/* 1. Deep Vignette to focus attention on central text, optimized for robot visibility */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(5,11,19,0.01)_0%,rgba(5,11,19,0.35)_100%)] z-10 select-none pointer-events-none" />
       
-      {/* 2. Linear Gradient to guarantee readability, beautifully refined */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#050B13] via-transparent to-black/15 z-10 select-none pointer-events-none" />
+      {/* 2. Linear Gradient to guarantee readability while making the robot stand out */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#050B13]/90 via-transparent to-black/5 z-10 select-none pointer-events-none" />
 
       {/* 3. Futuristic subtle tech scanning grid overlay */}
       <div 
