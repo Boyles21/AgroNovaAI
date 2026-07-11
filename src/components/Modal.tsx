@@ -112,7 +112,7 @@ export default function Modal({ isOpen, type, onClose }: ModalProps) {
               {type === "products" && (
                 <div className="space-y-8">
                   {/* Product Tabs */}
-                  <div className="flex gap-2 overflow-x-auto pb-3 border-b border-white/5">
+                  <div className="flex gap-2 overflow-x-auto pb-3 border-b border-white/5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     {PRODUCTS_DATA.map((product, idx) => (
                       <button
                         key={product.name}
@@ -192,7 +192,7 @@ export default function Modal({ isOpen, type, onClose }: ModalProps) {
               {type === "tech" && (
                 <div className="space-y-8">
                   {/* Tech Selection Tabs */}
-                  <div className="flex gap-2 overflow-x-auto pb-3 border-b border-white/5">
+                  <div className="flex gap-2 overflow-x-auto pb-3 border-b border-white/5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     {TECH_DATA.map((tech, idx) => (
                       <button
                         key={tech.title}

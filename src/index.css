@@ -107,3 +107,100 @@ h1, h2, h3, h4 {
   border-radius: 2px;
 }
 
+/* Cinematic product launch styling enhancements */
+@keyframes float-particle-up {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.35;
+  }
+  85% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateY(-160px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes float-particle-down {
+  0% {
+    transform: translateY(0) scale(1.1);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.3;
+  }
+  85% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(160px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes slow-pulse-blob {
+  0%, 100% {
+    transform: scale(1) translate(0px, 0px);
+    opacity: 0.15;
+  }
+  33% {
+    transform: scale(1.1) translate(30px, -30px);
+    opacity: 0.25;
+  }
+  66% {
+    transform: scale(0.9) translate(-20px, 20px);
+    opacity: 0.18;
+  }
+}
+
+@keyframes soft-glow-pulse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(1.05);
+  }
+}
+
+.animate-float-particle-up {
+  animation: float-particle-up 24s infinite linear;
+}
+
+.animate-float-particle-down {
+  animation: float-particle-down 28s infinite linear;
+}
+
+.animate-slow-pulse-blob {
+  animation: slow-pulse-blob 18s infinite ease-in-out;
+}
+
+.animate-soft-glow-pulse {
+  animation: soft-glow-pulse 10s infinite ease-in-out;
+}
+
+/* Glassmorphism premium reflections */
+.premium-glass {
+  background: rgba(255, 255, 255, 0.015);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 30px 100px -10px rgba(0, 0, 0, 0.7);
+}
+
+.premium-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 40%, rgba(255, 255, 255, 0.01) 100%);
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 0;
+}
+
+

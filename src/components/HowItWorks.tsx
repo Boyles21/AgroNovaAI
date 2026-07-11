@@ -39,11 +39,11 @@ export default function HowItWorks() {
   return (
     <section 
       id="how-it-works-section" 
-      className="relative w-full py-24 md:py-36 bg-gradient-to-b from-[#050B13] via-[#091526] to-[#050B13] overflow-hidden"
+      className="relative w-full py-32 md:py-48 xl:py-56 bg-gradient-to-b from-[#050B13] via-[#081324] to-[#050B13] overflow-hidden"
     >
-      {/* Immersive UI Ambient glows */}
-      <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[130px] pointer-events-none select-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[110px] pointer-events-none select-none" />
+      {/* Immersive UI Ambient glows with slow pulsing animations */}
+      <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-primary/8 rounded-full blur-[130px] pointer-events-none select-none animate-slow-pulse-blob" />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-accent/8 rounded-full blur-[110px] pointer-events-none select-none animate-slow-pulse-blob" style={{ animationDelay: "-5s" }} />
 
       {/* Grid Overlay */}
       <div 
@@ -112,7 +112,7 @@ export default function HowItWorks() {
                       type: "spring", 
                       stiffness: 70, 
                       damping: 15, 
-                      delay: idx * 0.15 
+                      delay: 0.5 + idx * 0.15 
                     }}
                     whileHover={{ y: -8 }}
                     className="glass-panel w-full p-6 rounded-[28px] border border-white/5 bg-white/[0.01] backdrop-blur-2xl flex flex-col items-center text-center relative group cursor-pointer hover:border-accent/30 hover:shadow-[0_15px_30px_rgba(0,208,132,0.06)] transition-all duration-300"
@@ -143,7 +143,10 @@ export default function HowItWorks() {
                   {idx < steps.length - 1 && (
                     <>
                       {/* Desktop Horizontal Connecting Indicator */}
-                      <div className="hidden xl:flex absolute top-[38px] left-[calc(20%*idx+15%)] items-center justify-center text-accent/40 animate-pulse pointer-events-none z-20">
+                      <div 
+                        className="hidden xl:flex absolute top-[38px] items-center justify-center text-accent/40 animate-pulse pointer-events-none z-20"
+                        style={{ left: `${20 * idx + 20}%`, transform: "translateX(-50%)" }}
+                      >
                         <ArrowRight className="w-5 h-5" />
                       </div>
 

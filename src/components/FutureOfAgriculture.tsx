@@ -7,21 +7,21 @@ export default function FutureOfAgriculture() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1
+        staggerChildren: 0.18,
+        delayChildren: 0.5
       }
     }
   };
 
   const cardVariants = {
-    hidden: { y: 40, opacity: 0 },
+    hidden: { y: 50, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
         type: "spring",
-        stiffness: 80,
-        damping: 15
+        stiffness: 55,
+        damping: 18
       }
     }
   };
@@ -52,11 +52,11 @@ export default function FutureOfAgriculture() {
   return (
     <section 
       id="future-section" 
-      className="relative w-full py-24 md:py-36 bg-gradient-to-b from-[#050B13] via-[#081220] to-[#050B13] overflow-hidden"
+      className="relative w-full py-32 md:py-48 xl:py-56 bg-gradient-to-b from-[#050B13] via-[#07101c] to-[#050B13] overflow-hidden"
     >
       {/* Decorative ambient glowing grids & lighting */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none select-none" />
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-accent/5 rounded-full blur-[100px] pointer-events-none select-none" />
+      <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[140px] pointer-events-none select-none animate-slow-pulse-blob" />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-accent/8 rounded-full blur-[130px] pointer-events-none select-none animate-slow-pulse-blob" style={{ animationDelay: "-4s" }} />
 
       {/* Thin grid lines for a premium technological backdrop */}
       <div 

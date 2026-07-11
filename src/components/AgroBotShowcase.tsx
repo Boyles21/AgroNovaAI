@@ -45,22 +45,22 @@ export default function AgroBotShowcase() {
   return (
     <section 
       id="agrobot-section" 
-      className="relative w-full py-24 md:py-36 bg-[#050B13] overflow-hidden"
+      className="relative w-full py-32 md:py-48 xl:py-56 bg-gradient-to-b from-[#050B13] via-[#060e18] to-[#050B13] overflow-hidden"
     >
-      {/* Glow Backdrops */}
-      <div className="absolute top-1/2 right-1/4 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[140px] pointer-events-none select-none" />
-      <div className="absolute top-1/3 left-10 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none select-none" />
+      {/* Glow Backdrops with slow animated pulsing effects */}
+      <div className="absolute top-1/2 right-1/4 w-[600px] h-[600px] bg-accent/8 rounded-full blur-[140px] pointer-events-none select-none animate-slow-pulse-blob" />
+      <div className="absolute top-1/3 left-10 w-96 h-96 bg-primary/8 rounded-full blur-[100px] pointer-events-none select-none animate-slow-pulse-blob" style={{ animationDelay: "-3s" }} />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           
-          {/* LEFT SIDE: Stylized Robot Silhouette with Ambient Blue Lighting */}
-          <div className="lg:col-span-5 order-2 lg:order-1">
+          {/* LEFT SIDE: Stylized Robot Silhouette with Ambient Blue Lighting (Fades in slightly later for text-first storytelling) */}
+          <div className="lg:col-span-5 order-1 lg:order-1">
             <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, type: "spring", bounce: 0.15 }}
+              transition={{ duration: 1.1, delay: 0.35, type: "spring", bounce: 0.1 }}
               className="glass-panel rounded-[32px] p-6 md:p-8 border border-white/10 bg-white/[0.01] backdrop-blur-2xl relative shadow-[0_24px_60px_rgba(0,0,0,0.7)] flex flex-col items-center group overflow-hidden"
             >
               {/* Soft glow in behind */}
@@ -152,7 +152,7 @@ export default function AgroBotShowcase() {
           </div>
 
           {/* RIGHT SIDE: Product Description & Features Grid */}
-          <div className="lg:col-span-7 order-1 lg:order-2 space-y-8">
+          <div className="lg:col-span-7 order-2 lg:order-2 space-y-8">
             
             <div className="space-y-4">
               <span className="text-xs uppercase tracking-widest text-accent font-semibold font-display">

@@ -11,10 +11,11 @@ export default function Hero({ onExploreClick, onRequestDemo }: HeroProps) {
   // Setup scroll-linked parallax animations for the background video
   const { scrollY } = useScroll();
   
-  // As the user scrolls, the background video slowly scales up and dims down
-  const videoScale = useTransform(scrollY, [0, 800], [1.0, 1.15]);
-  const videoOpacity = useTransform(scrollY, [0, 800], [1.0, 0.4]);
-  const textTranslateY = useTransform(scrollY, [0, 400], [0, 80]);
+  // As the user scrolls, the background video slowly scales up, dims down, and has vertical parallax
+  const videoScale = useTransform(scrollY, [0, 1000], [1.0, 1.18]);
+  const videoOpacity = useTransform(scrollY, [0, 800], [1.0, 0.35]);
+  const videoY = useTransform(scrollY, [0, 1000], [0, 150]);
+  const textTranslateY = useTransform(scrollY, [0, 450], [0, -30]);
   const textOpacity = useTransform(scrollY, [0, 450], [1.0, 0.0]);
 
   // Framer Motion animation container variants for staggered children entry
@@ -23,21 +24,21 @@ export default function Hero({ onExploreClick, onRequestDemo }: HeroProps) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
+        staggerChildren: 0.12,
+        delayChildren: 0.15
       }
     }
   };
 
   const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
+    hidden: { y: 24, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
         type: "spring",
-        stiffness: 70,
-        damping: 15
+        stiffness: 60,
+        damping: 18
       }
     }
   };
@@ -45,17 +46,17 @@ export default function Hero({ onExploreClick, onRequestDemo }: HeroProps) {
   const scrollDown = () => {
     // Scroll down past the 100vh hero smoothly
     window.scrollTo({
-      top: window.innerHeight * 0.4,
+      top: window.innerHeight * 0.45,
       behavior: "smooth"
     });
   };
 
   return (
     <div id="hero-section" className="relative w-full h-[100vh] min-h-[600px] overflow-hidden flex items-center justify-center bg-bg-dark">
-      {/* Background Video Layer */}
+      {/* Background Video Layer with Parallax */}
       <motion.div 
         id="hero-video-wrapper"
-        style={{ scale: videoScale, opacity: videoOpacity }}
+        style={{ scale: videoScale, opacity: videoOpacity, y: videoY }}
         className="absolute inset-0 w-full h-full select-none pointer-events-none z-0"
       >
         <video
@@ -69,39 +70,65 @@ export default function Hero({ onExploreClick, onRequestDemo }: HeroProps) {
         />
       </motion.div>
 
+      {/* Floating Ambient Cinematic Particles */}
+      <div className="absolute inset-0 z-10 pointer-events-none select-none overflow-hidden">
+        {/* Particle 1 */}
+        <div className="absolute w-1.5 h-1.5 bg-accent/30 rounded-full animate-float-particle-up" style={{ left: "10%", bottom: "10%", animationDelay: "0s", animationDuration: "20s" }} />
+        {/* Particle 2 */}
+        <div className="absolute w-1 h-1 bg-primary/40 rounded-full animate-float-particle-up" style={{ left: "25%", bottom: "5%", animationDelay: "4s", animationDuration: "25s" }} />
+        {/* Particle 3 */}
+        <div className="absolute w-2 h-2 bg-accent/25 rounded-full animate-float-particle-up" style={{ left: "45%", bottom: "15%", animationDelay: "2s", animationDuration: "22s" }} />
+        {/* Particle 4 */}
+        <div className="absolute w-1.5 h-1.5 bg-primary/30 rounded-full animate-float-particle-up" style={{ left: "70%", bottom: "8%", animationDelay: "6s", animationDuration: "18s" }} />
+        {/* Particle 5 */}
+        <div className="absolute w-1 h-1 bg-accent/40 rounded-full animate-float-particle-up" style={{ left: "85%", bottom: "12%", animationDelay: "1s", animationDuration: "24s" }} />
+        {/* Particle 6 */}
+        <div className="absolute w-1.5 h-1.5 bg-white/20 rounded-full animate-float-particle-up" style={{ left: "33%", bottom: "2%", animationDelay: "8s", animationDuration: "30s" }} />
+        {/* Particle 7 (drifting down) */}
+        <div className="absolute w-1 h-1 bg-accent/35 rounded-full animate-float-particle-down" style={{ left: "15%", top: "5%", animationDelay: "3s", animationDuration: "26s" }} />
+        {/* Particle 8 (drifting down) */}
+        <div className="absolute w-2 h-2 bg-primary/25 rounded-full animate-float-particle-down" style={{ left: "60%", top: "8%", animationDelay: "5s", animationDuration: "22s" }} />
+        {/* Particle 9 (drifting down) */}
+        <div className="absolute w-1.5 h-1.5 bg-white/15 rounded-full animate-float-particle-down" style={{ left: "80%", top: "15%", animationDelay: "1s", animationDuration: "28s" }} />
+      </div>
+
       {/* Cinematic Overlays */}
-      {/* 1. Deep Vignette to focus attention on central text */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(5,11,19,0.1)_0%,rgba(5,11,19,0.85)_100%)] z-10 select-none pointer-events-none" />
+      {/* 1. Deep Vignette to focus attention on central text, optimized */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(5,11,19,0.01)_0%,rgba(5,11,19,0.5)_100%)] z-10 select-none pointer-events-none" />
       
-      {/* 2. Linear Gradient to guarantee readability & blend with the background */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#050B13] via-black/30 to-[#050B13]/60 z-10 select-none pointer-events-none" />
+      {/* 2. Linear Gradient to guarantee readability, beautifully refined */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#050B13] via-transparent to-black/15 z-10 select-none pointer-events-none" />
 
       {/* 3. Futuristic subtle tech scanning grid overlay */}
       <div 
-        className="absolute inset-0 opacity-[0.03] z-10 select-none pointer-events-none mix-blend-overlay"
+        className="absolute inset-0 opacity-[0.02] z-10 select-none pointer-events-none mix-blend-overlay"
         style={{
           backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`,
           backgroundSize: "24px 24px"
         }}
       />
 
-      {/* Central Content Container */}
+      {/* Floating Animated Gradient Lighting Blobs */}
+      <div className="absolute top-[20%] left-[15%] w-72 h-72 bg-primary/10 rounded-full blur-[100px] pointer-events-none select-none animate-slow-pulse-blob z-10" />
+      <div className="absolute bottom-[25%] right-[15%] w-80 h-80 bg-accent/10 rounded-full blur-[120px] pointer-events-none select-none animate-slow-pulse-blob z-10" style={{ animationDelay: "-6s" }} />
+
+      {/* Central Content Container (Shifted upward to unveil more of the robot/farmland) */}
       <motion.div
         id="hero-content-container"
         style={{ y: textTranslateY, opacity: textOpacity }}
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-20 max-w-6xl mx-auto px-6 text-center flex flex-col items-center mt-8 md:mt-12"
+        className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center -translate-y-16 sm:-translate-y-20 md:-translate-y-24"
       >
-        {/* Subtle top badge */}
+        {/* Subtle top badge with a custom pulsing highlight */}
         <motion.div
           variants={itemVariants}
-          className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/20 bg-accent/[0.04] text-accent backdrop-blur-md"
+          className="mb-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/[0.05] text-accent backdrop-blur-md"
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-ping" />
           <span className="text-[10px] md:text-xs font-semibold uppercase tracking-widest font-display">
-            AeroScout S-16 Autonomous Deployments Active
+            AI-Powered Autonomous Agriculture
           </span>
         </motion.div>
 
@@ -117,25 +144,25 @@ export default function Hero({ onExploreClick, onRequestDemo }: HeroProps) {
           </span>
         </motion.h1>
 
-        {/* Cinematic Subheading */}
+        {/* Cinematic Subheading (Directly identifying AgroBot X1 as the flagship product) */}
         <motion.p
           id="hero-subheading"
           variants={itemVariants}
-          className="font-sans text-sm sm:text-base md:text-lg lg:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed mt-6 mb-10 select-none"
+          className="font-sans text-xs sm:text-sm md:text-base lg:text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed mt-2 mb-6 select-none"
         >
-          Autonomous robotics that monitor, analyze, and protect crops with precision and intelligence.
+          Meet AgroBot X1: our flagship autonomous robotics platform engineered to monitor, analyze, and protect crops with centimeter-level precision.
         </motion.p>
 
         {/* Staggered Actions Row */}
         <motion.div
           id="hero-actions-row"
           variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto px-6 sm:px-0"
         >
           <button
             id="hero-explore-button"
             onClick={onExploreClick}
-            className="w-full sm:w-auto glass-panel px-8 py-4 rounded-full font-medium text-white hover:bg-white/10 hover:border-white/25 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all duration-300 text-sm tracking-wide font-sans flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto h-[52px] sm:h-14 glass-panel px-6 sm:px-8 rounded-full font-medium text-white hover:bg-white/10 hover:border-white/25 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all duration-300 text-sm tracking-wide font-sans flex items-center justify-center gap-2 cursor-pointer"
           >
             Explore Technology
             <ArrowRight className="w-4 h-4 text-white/75" />
@@ -144,7 +171,7 @@ export default function Hero({ onExploreClick, onRequestDemo }: HeroProps) {
           <button
             id="hero-demo-button"
             onClick={onRequestDemo}
-            className="w-full sm:w-auto bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-medium px-8 py-4 rounded-full shadow-[0_4px_24px_rgba(10,132,255,0.25)] hover:shadow-[0_4px_30px_rgba(0,208,132,0.4)] transition-all duration-300 text-sm tracking-wide font-sans flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto h-[52px] sm:h-14 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-medium px-6 sm:px-8 rounded-full shadow-[0_4px_24px_rgba(10,132,255,0.25)] hover:shadow-[0_4px_30px_rgba(0,208,132,0.4)] transition-all duration-300 text-sm tracking-wide font-sans flex items-center justify-center gap-2 cursor-pointer"
           >
             Request Demo
           </button>

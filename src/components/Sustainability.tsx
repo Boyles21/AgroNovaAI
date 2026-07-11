@@ -83,11 +83,11 @@ export default function Sustainability() {
   return (
     <section 
       id="sustainability-section" 
-      className="relative w-full py-24 md:py-36 bg-[#050B13] overflow-hidden"
+      className="relative w-full py-32 md:py-48 xl:py-56 bg-gradient-to-b from-[#050B13] via-[#061120] to-[#050B13] overflow-hidden"
     >
-      {/* Immersive ambient glows */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-[100px] pointer-events-none select-none animate-pulse" />
-      <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none select-none" />
+      {/* Immersive ambient glows with slow pulsing animations */}
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-accent/8 rounded-full blur-[100px] pointer-events-none select-none animate-slow-pulse-blob" />
+      <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-primary/8 rounded-full blur-[120px] pointer-events-none select-none animate-slow-pulse-blob" style={{ animationDelay: "-6s" }} />
 
       {/* Grid overlay */}
       <div 
@@ -145,7 +145,7 @@ export default function Sustainability() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ type: "spring", stiffness: 70, damping: 15, delay: idx * 0.1 }}
+                transition={{ type: "spring", stiffness: 70, damping: 15, delay: 0.5 + idx * 0.12 }}
                 whileHover={{ y: -8, borderColor: "rgba(0, 208, 132, 0.3)" }}
                 className="glass-panel p-8 rounded-[28px] border border-white/5 bg-white/[0.01] flex flex-col justify-between group cursor-pointer transition-all duration-300 relative overflow-hidden"
               >
