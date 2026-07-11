@@ -1,0 +1,6 @@
+{
+  "name": "AgroNova AI",
+  "description": "Premium landing page for AgroNova AI, a pioneering AI and robotics agriculture company.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
