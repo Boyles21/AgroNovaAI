@@ -112,26 +112,15 @@ export default function Hero({ onExploreClick, onRequestDemo }: HeroProps) {
       <div className="absolute top-[20%] left-[15%] w-72 h-72 bg-primary/10 rounded-full blur-[100px] pointer-events-none select-none animate-slow-pulse-blob z-10" />
       <div className="absolute bottom-[25%] right-[15%] w-80 h-80 bg-accent/10 rounded-full blur-[120px] pointer-events-none select-none animate-slow-pulse-blob z-10" style={{ animationDelay: "-6s" }} />
 
-      {/* Central Content Container (Shifted upward to unveil more of the robot/farmland) */}
+      {/* Central Content Container */}
       <motion.div
         id="hero-content-container"
         style={{ y: textTranslateY, opacity: textOpacity }}
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center -translate-y-16 sm:-translate-y-20 md:-translate-y-24"
+        className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center pt-8 sm:pt-12 md:pt-16"
       >
-        {/* Subtle top badge with a custom pulsing highlight */}
-        <motion.div
-          variants={itemVariants}
-          className="mb-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/[0.05] text-accent backdrop-blur-md"
-        >
-          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-ping" />
-          <span className="text-[10px] md:text-xs font-semibold uppercase tracking-widest font-display">
-            AI-Powered Autonomous Agriculture
-          </span>
-        </motion.div>
-
         {/* Large Typography Headline */}
         <motion.h1
           id="hero-headline"

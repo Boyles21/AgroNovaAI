@@ -62,39 +62,76 @@ export default function Navbar({ onNavClick, onRequestDemo }: NavbarProps) {
         id="main-navbar"
         className={`z-40 transition-all duration-500 ease-out ${
           isScrolled
-            ? "fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-5xl glass-nav px-6 py-3 rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-white/10"
+            ? "fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-6xl glass-nav px-5 py-2.5 rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.5)] border border-white/10"
             : "absolute top-0 left-0 w-full px-6 py-6 md:py-8 bg-transparent"
         }`}
         animate={isScrolled ? { y: 0 } : { y: 0 }}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           {/* Logo */}
           <div
             id="navbar-logo"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-2 cursor-pointer group"
+            className="flex items-center gap-2 cursor-pointer group shrink-0"
           >
             <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-accent flex items-center justify-center shadow-md shadow-primary/20 group-hover:scale-105 transition-transform duration-300">
               <Sprout className="w-4 h-4 text-white" />
             </div>
-            <span className="font-display font-medium text-lg md:text-xl text-white tracking-tight group-hover:opacity-90 transition-opacity">
+            <span className="font-display font-medium text-lg md:text-xl text-white tracking-tight group-hover:opacity-90 transition-opacity whitespace-nowrap">
               AgroNova <span className="text-accent font-light">AI</span>
             </span>
           </div>
 
-          {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-1.5 bg-white/[0.02] p-1 rounded-full border border-white/5">
-            {navLinks.map((link) => (
+          {/* Desktop Links & Embedded Badge */}
+          <div className="hidden lg:flex items-center gap-1 xl:gap-2 bg-white/[0.02] p-1.5 rounded-full border border-white/5 shrink-0">
+            {/* First two links: Products, Technology */}
+            {navLinks.slice(0, 2).map((link) => (
               <div
                 key={link.value}
-                className="relative"
+                className="relative shrink-0"
                 onMouseEnter={() => setHoveredLink(link.value)}
                 onMouseLeave={() => setHoveredLink(null)}
               >
                 <button
                   id={`nav-link-${link.value}`}
                   onClick={() => handleLinkClick(link.value)}
-                  className="px-4 py-2 rounded-full text-xs font-medium text-text-secondary hover:text-white transition-colors relative z-10 font-sans"
+                  className="px-3 xl:px-4 py-2 rounded-full text-xs font-medium text-text-secondary hover:text-white transition-colors relative z-10 font-sans whitespace-nowrap"
+                >
+                  {link.label}
+                </button>
+                {hoveredLink === link.value && (
+                  <motion.div
+                    layoutId="navbar-hover-pill"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    className="absolute inset-0 bg-white/5 rounded-full z-0 border border-white/5"
+                  />
+                )}
+              </div>
+            ))}
+
+            {/* AI-POWERED AUTONOMOUS AGRICULTURE Badge as a normal flex item */}
+            <div
+              id="navbar-agriculture-badge"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-accent/30 bg-accent/[0.05] text-accent backdrop-blur-md shrink-0 whitespace-nowrap mx-1 select-none"
+            >
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-ping shrink-0" />
+              <span className="text-[10px] xl:text-xs font-semibold uppercase tracking-widest font-display text-accent whitespace-nowrap">
+                AI-Powered Autonomous Agriculture
+              </span>
+            </div>
+
+            {/* Remaining links: Solutions, About, Contact */}
+            {navLinks.slice(2).map((link) => (
+              <div
+                key={link.value}
+                className="relative shrink-0"
+                onMouseEnter={() => setHoveredLink(link.value)}
+                onMouseLeave={() => setHoveredLink(null)}
+              >
+                <button
+                  id={`nav-link-${link.value}`}
+                  onClick={() => handleLinkClick(link.value)}
+                  className="px-3 xl:px-4 py-2 rounded-full text-xs font-medium text-text-secondary hover:text-white transition-colors relative z-10 font-sans whitespace-nowrap"
                 >
                   {link.label}
                 </button>
@@ -110,18 +147,18 @@ export default function Navbar({ onNavClick, onRequestDemo }: NavbarProps) {
           </div>
 
           {/* Request Demo Button / Actions */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4 shrink-0">
             <button
               id="desktop-demo-button"
               onClick={handleDemoClick}
-              className="bg-primary hover:bg-primary/90 text-white font-medium px-5 py-2.5 rounded-full hover:shadow-[0_0_20px_rgba(10,132,255,0.4)] transition-all duration-300 font-sans text-xs"
+              className="bg-primary hover:bg-primary/90 text-white font-medium px-5 py-2.5 rounded-full hover:shadow-[0_0_20px_rgba(10,132,255,0.4)] transition-all duration-300 font-sans text-xs whitespace-nowrap"
             >
               Request Demo
             </button>
           </div>
 
           {/* Mobile Menu Toggle */}
-          <div className="flex md:hidden">
+          <div className="flex lg:hidden">
             <button
               id="mobile-menu-toggle"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -143,14 +180,22 @@ export default function Navbar({ onNavClick, onRequestDemo }: NavbarProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-30 pt-24 px-6 pb-8 bg-[#050B13]/95 backdrop-blur-2xl flex flex-col justify-between md:hidden border-b border-white/10"
+            className="fixed inset-0 z-30 pt-24 px-6 pb-8 bg-[#050B13]/95 backdrop-blur-2xl flex flex-col justify-between lg:hidden border-b border-white/10"
           >
             {/* Ambient glows behind mobile overlay */}
             <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-80 h-80 bg-primary/10 rounded-full blur-3xl select-none pointer-events-none" />
             <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-accent/5 rounded-full blur-3xl select-none pointer-events-none" />
 
             <div className="space-y-6 relative z-10">
-              <p className="text-[10px] uppercase tracking-widest text-white/40 font-bold font-display px-2">Navigation System</p>
+              <div className="flex flex-col gap-2">
+                <p className="text-[10px] uppercase tracking-widest text-white/40 font-bold font-display px-2">Navigation System</p>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/30 bg-accent/[0.05] text-accent backdrop-blur-md select-none w-fit mx-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-accent animate-ping" />
+                  <span className="text-[10px] font-semibold uppercase tracking-widest font-display text-accent">
+                    AI-Powered Autonomous Agriculture
+                  </span>
+                </div>
+              </div>
               <div className="space-y-2">
                 {navLinks.map((link, idx) => (
                   <motion.button
